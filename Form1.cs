@@ -25,28 +25,6 @@ namespace TestAsk
 
         private Dictionary<string, string> nodeValues = new Dictionary<string, string>();
 
-        private string GetNodeValue(TreeNode node, string filePath)
-        {
-            string value = string.Empty;
-
-            using (XmlReader reader = XmlReader.Create(filePath))
-            {
-                while (reader.Read())
-                {
-                    if (reader.NodeType == XmlNodeType.Element && reader.Name == node.Text.Split('[')[0])
-                    {
-                        if (reader.Read() && reader.NodeType == XmlNodeType.Text)
-                        {
-                            value = reader.Value;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            return value;
-        }
-
         private async void LoadXmlDoc(string filePath)
         {
             treeView1.Nodes.Clear();
